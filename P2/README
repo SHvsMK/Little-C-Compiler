@@ -1,0 +1,54 @@
+The directory includes 5 files:
+README
+src
+doc
+bin
+test
+
+#INTRODUCTION TO DIRECTORY
+README: Introduction to this directory and Introduction to how to compiler the program to get the result 		automatically or by hand.
+
+src: This directory includes 5 files:
+	C0.lex: The first draft of word formation of C0.
+	makefile: Some rules for compiler the pl0.
+	pl0.c: pl0.c file
+	pl0.h: pl0.h file
+	pl0.lex: pl0.lex file which is used to produce the lex.yy.c through using flex.
+
+doc: The design of the pl0 and word fomation of pl0 and C0.
+
+bin: shell for compiling and running pl0 program more quickly.
+
+test: Some programs written by language pl0 for testing the pl0 compiler.
+
+
+#BUILD RUN CLEAN PL0 COMPILER
+
+There are two ways you can compile the program through makefile.
+$ cd src
+
+(Build pl0 compiler)
+
+$ make: you can get a pl0 which part of program is made by flex.
+
+or
+
+$ make pl0: you can get a pl0 which is totally man_made.
+
+(Clean pl0 compiler)
+
+$ make clean: clean all the programs which are produced through these two process.
+
+(Run pl0 compiler)
+
+$ bin/pl0 ../test/"filename"
+
+or
+
+$ cd bin
+  ./pl0 ../../test/"filename"
+
+--------------------------------------------------------------------
+Made by SHvsMK
+PB11011030
+Wang Yicheng

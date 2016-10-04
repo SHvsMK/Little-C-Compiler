@@ -1,0 +1,1208 @@
+Terminals unused in grammar
+
+   dosym
+
+
+语法
+
+    0 $accept: goal $end
+
+    1 goal: Program
+
+    2 Program: CDecl IntDecl VDecl mainsym lparen rparen lbrace IntDecl Stmt rbrace
+
+    3 CDecl: /* 空 */
+    4      | constsym ident becomes front number CIDC semicolon CDecl
+
+    5 CIDC: /* 空 */
+    6     | comma ident becomes front number CIDC
+
+    7 IntDecl: /* 空 */
+    8        | integersym ident BN CIDI semicolon IntDecl
+
+    9 CIDI: /* 空 */
+   10     | comma ident BN CIDI
+
+   11 BN: /* 空 */
+   12   | becomes front number
+
+   13 VDecl: /* 空 */
+   14      | voidsym ident lparen rparen lbrace CDecl IntDecl Stmt rbrace VDecl
+
+   15 Stmt: /* 空 */
+   16     | Factor IDT semicolon Stmt
+   17     | ifsym lparen cond rparen lbrace Stmt rbrace Stmt
+   18     | whilesym lparen cond rparen lbrace Stmt rbrace Stmt
+   19     | returnsym semicolon Stmt
+
+   20 IDT: becomes Exp
+   21    | lparen rparen
+
+   22 cond: Exp RelOp Exp
+
+   23 RelOp: eql
+   24      | leq
+   25      | geq
+   26      | lss
+   27      | gtr
+   28      | neq
+
+   29 Exp: front Term TM
+
+   30 front: /* 空 */
+   31      | plus
+   32      | minus
+
+   33 TM: /* 空 */
+   34   | plus Term TM
+   35   | minus Term TM
+
+   36 Term: Factor FT
+
+   37 FT: /* 空 */
+   38   | times Factor FT
+   39   | divd Factor FT
+   40   | mod Factor FT
+
+   41 Factor: ident
+   42       | number
+   43       | lparen Exp rparen
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+error (256)
+number (258) 4 6 12 42
+ident (259) 4 6 8 10 14 41
+plus (260) 31 34
+minus (261) 32 35
+times (262) 38
+divd (263) 39
+mod (264) 40
+lparen (265) 2 14 17 18 21 43
+rparen (266) 2 14 17 18 21 43
+lbrace (267) 2 14 17 18
+rbrace (268) 2 14 17 18
+becomes (269) 4 6 12 20
+leq (270) 24
+neq (271) 28
+geq (272) 25
+lss (273) 26
+gtr (274) 27
+eql (275) 23
+integersym (276) 8
+voidsym (277) 14
+returnsym (278) 19
+dosym (279)
+ifsym (280) 17
+constsym (281) 4
+mainsym (282) 2
+whilesym (283) 18
+comma (284) 6 10
+semicolon (285) 4 8 16 19
+
+
+Nonterminals, with rules where they appear
+
+$accept (31)
+    左： 0
+goal (32)
+    左： 1, 右： 0
+Program (33)
+    左： 2, 右： 1
+CDecl (34)
+    左： 3 4, 右： 2 4 14
+CIDC (35)
+    左： 5 6, 右： 4 6
+IntDecl (36)
+    左： 7 8, 右： 2 8 14
+CIDI (37)
+    左： 9 10, 右： 8 10
+BN (38)
+    左： 11 12, 右： 8 10
+VDecl (39)
+    左： 13 14, 右： 2 14
+Stmt (40)
+    左： 15 16 17 18 19, 右： 2 14 16 17 18 19
+IDT (41)
+    左： 20 21, 右： 16
+cond (42)
+    左： 22, 右： 17 18
+RelOp (43)
+    左： 23 24 25 26 27 28, 右： 22
+Exp (44)
+    左： 29, 右： 20 22 43
+front (45)
+    左： 30 31 32, 右： 4 6 12 29
+TM (46)
+    左： 33 34 35, 右： 29 34 35
+Term (47)
+    左： 36, 右： 29 34 35
+FT (48)
+    左： 37 38 39 40, 右： 36 38 39 40
+Factor (49)
+    左： 41 42 43, 右： 16 36 38 39 40
+
+
+状态 0
+
+    0 $accept: . goal $end
+
+    constsym  shift, and go to state 1
+
+    $default  reduce using rule 3 (CDecl)
+
+    goal     转到状态2
+    Program  转到状态3
+    CDecl    转到状态4
+
+
+状态 1
+
+    4 CDecl: constsym . ident becomes front number CIDC semicolon CDecl
+
+    ident  shift, and go to state 5
+
+
+状态 2
+
+    0 $accept: goal . $end
+
+    $end  shift, and go to state 6
+
+
+状态 3
+
+    1 goal: Program .
+
+    $default  reduce using rule 1 (goal)
+
+
+状态 4
+
+    2 Program: CDecl . IntDecl VDecl mainsym lparen rparen lbrace IntDecl Stmt rbrace
+
+    integersym  shift, and go to state 7
+
+    $default  reduce using rule 7 (IntDecl)
+
+    IntDecl  转到状态8
+
+
+状态 5
+
+    4 CDecl: constsym ident . becomes front number CIDC semicolon CDecl
+
+    becomes  shift, and go to state 9
+
+
+状态 6
+
+    0 $accept: goal $end .
+
+    $default  接受
+
+
+状态 7
+
+    8 IntDecl: integersym . ident BN CIDI semicolon IntDecl
+
+    ident  shift, and go to state 10
+
+
+状态 8
+
+    2 Program: CDecl IntDecl . VDecl mainsym lparen rparen lbrace IntDecl Stmt rbrace
+
+    voidsym  shift, and go to state 11
+
+    $default  reduce using rule 13 (VDecl)
+
+    VDecl  转到状态12
+
+
+状态 9
+
+    4 CDecl: constsym ident becomes . front number CIDC semicolon CDecl
+
+    plus   shift, and go to state 13
+    minus  shift, and go to state 14
+
+    $default  reduce using rule 30 (front)
+
+    front  转到状态15
+
+
+状态 10
+
+    8 IntDecl: integersym ident . BN CIDI semicolon IntDecl
+
+    becomes  shift, and go to state 16
+
+    $default  reduce using rule 11 (BN)
+
+    BN  转到状态17
+
+
+状态 11
+
+   14 VDecl: voidsym . ident lparen rparen lbrace CDecl IntDecl Stmt rbrace VDecl
+
+    ident  shift, and go to state 18
+
+
+状态 12
+
+    2 Program: CDecl IntDecl VDecl . mainsym lparen rparen lbrace IntDecl Stmt rbrace
+
+    mainsym  shift, and go to state 19
+
+
+状态 13
+
+   31 front: plus .
+
+    $default  reduce using rule 31 (front)
+
+
+状态 14
+
+   32 front: minus .
+
+    $default  reduce using rule 32 (front)
+
+
+状态 15
+
+    4 CDecl: constsym ident becomes front . number CIDC semicolon CDecl
+
+    number  shift, and go to state 20
+
+
+状态 16
+
+   12 BN: becomes . front number
+
+    plus   shift, and go to state 13
+    minus  shift, and go to state 14
+
+    $default  reduce using rule 30 (front)
+
+    front  转到状态21
+
+
+状态 17
+
+    8 IntDecl: integersym ident BN . CIDI semicolon IntDecl
+
+    comma  shift, and go to state 22
+
+    $default  reduce using rule 9 (CIDI)
+
+    CIDI  转到状态23
+
+
+状态 18
+
+   14 VDecl: voidsym ident . lparen rparen lbrace CDecl IntDecl Stmt rbrace VDecl
+
+    lparen  shift, and go to state 24
+
+
+状态 19
+
+    2 Program: CDecl IntDecl VDecl mainsym . lparen rparen lbrace IntDecl Stmt rbrace
+
+    lparen  shift, and go to state 25
+
+
+状态 20
+
+    4 CDecl: constsym ident becomes front number . CIDC semicolon CDecl
+
+    comma  shift, and go to state 26
+
+    $default  reduce using rule 5 (CIDC)
+
+    CIDC  转到状态27
+
+
+状态 21
+
+   12 BN: becomes front . number
+
+    number  shift, and go to state 28
+
+
+状态 22
+
+   10 CIDI: comma . ident BN CIDI
+
+    ident  shift, and go to state 29
+
+
+状态 23
+
+    8 IntDecl: integersym ident BN CIDI . semicolon IntDecl
+
+    semicolon  shift, and go to state 30
+
+
+状态 24
+
+   14 VDecl: voidsym ident lparen . rparen lbrace CDecl IntDecl Stmt rbrace VDecl
+
+    rparen  shift, and go to state 31
+
+
+状态 25
+
+    2 Program: CDecl IntDecl VDecl mainsym lparen . rparen lbrace IntDecl Stmt rbrace
+
+    rparen  shift, and go to state 32
+
+
+状态 26
+
+    6 CIDC: comma . ident becomes front number CIDC
+
+    ident  shift, and go to state 33
+
+
+状态 27
+
+    4 CDecl: constsym ident becomes front number CIDC . semicolon CDecl
+
+    semicolon  shift, and go to state 34
+
+
+状态 28
+
+   12 BN: becomes front number .
+
+    $default  reduce using rule 12 (BN)
+
+
+状态 29
+
+   10 CIDI: comma ident . BN CIDI
+
+    becomes  shift, and go to state 16
+
+    $default  reduce using rule 11 (BN)
+
+    BN  转到状态35
+
+
+状态 30
+
+    8 IntDecl: integersym ident BN CIDI semicolon . IntDecl
+
+    integersym  shift, and go to state 7
+
+    $default  reduce using rule 7 (IntDecl)
+
+    IntDecl  转到状态36
+
+
+状态 31
+
+   14 VDecl: voidsym ident lparen rparen . lbrace CDecl IntDecl Stmt rbrace VDecl
+
+    lbrace  shift, and go to state 37
+
+
+状态 32
+
+    2 Program: CDecl IntDecl VDecl mainsym lparen rparen . lbrace IntDecl Stmt rbrace
+
+    lbrace  shift, and go to state 38
+
+
+状态 33
+
+    6 CIDC: comma ident . becomes front number CIDC
+
+    becomes  shift, and go to state 39
+
+
+状态 34
+
+    4 CDecl: constsym ident becomes front number CIDC semicolon . CDecl
+
+    constsym  shift, and go to state 1
+
+    $default  reduce using rule 3 (CDecl)
+
+    CDecl  转到状态40
+
+
+状态 35
+
+   10 CIDI: comma ident BN . CIDI
+
+    comma  shift, and go to state 22
+
+    $default  reduce using rule 9 (CIDI)
+
+    CIDI  转到状态41
+
+
+状态 36
+
+    8 IntDecl: integersym ident BN CIDI semicolon IntDecl .
+
+    $default  reduce using rule 8 (IntDecl)
+
+
+状态 37
+
+   14 VDecl: voidsym ident lparen rparen lbrace . CDecl IntDecl Stmt rbrace VDecl
+
+    constsym  shift, and go to state 1
+
+    $default  reduce using rule 3 (CDecl)
+
+    CDecl  转到状态42
+
+
+状态 38
+
+    2 Program: CDecl IntDecl VDecl mainsym lparen rparen lbrace . IntDecl Stmt rbrace
+
+    integersym  shift, and go to state 7
+
+    $default  reduce using rule 7 (IntDecl)
+
+    IntDecl  转到状态43
+
+
+状态 39
+
+    6 CIDC: comma ident becomes . front number CIDC
+
+    plus   shift, and go to state 13
+    minus  shift, and go to state 14
+
+    $default  reduce using rule 30 (front)
+
+    front  转到状态44
+
+
+状态 40
+
+    4 CDecl: constsym ident becomes front number CIDC semicolon CDecl .
+
+    $default  reduce using rule 4 (CDecl)
+
+
+状态 41
+
+   10 CIDI: comma ident BN CIDI .
+
+    $default  reduce using rule 10 (CIDI)
+
+
+状态 42
+
+   14 VDecl: voidsym ident lparen rparen lbrace CDecl . IntDecl Stmt rbrace VDecl
+
+    integersym  shift, and go to state 7
+
+    $default  reduce using rule 7 (IntDecl)
+
+    IntDecl  转到状态45
+
+
+状态 43
+
+    2 Program: CDecl IntDecl VDecl mainsym lparen rparen lbrace IntDecl . Stmt rbrace
+
+    number     shift, and go to state 46
+    ident      shift, and go to state 47
+    lparen     shift, and go to state 48
+    returnsym  shift, and go to state 49
+    ifsym      shift, and go to state 50
+    whilesym   shift, and go to state 51
+
+    $default  reduce using rule 15 (Stmt)
+
+    Stmt    转到状态52
+    Factor  转到状态53
+
+
+状态 44
+
+    6 CIDC: comma ident becomes front . number CIDC
+
+    number  shift, and go to state 54
+
+
+状态 45
+
+   14 VDecl: voidsym ident lparen rparen lbrace CDecl IntDecl . Stmt rbrace VDecl
+
+    number     shift, and go to state 46
+    ident      shift, and go to state 47
+    lparen     shift, and go to state 48
+    returnsym  shift, and go to state 49
+    ifsym      shift, and go to state 50
+    whilesym   shift, and go to state 51
+
+    $default  reduce using rule 15 (Stmt)
+
+    Stmt    转到状态55
+    Factor  转到状态53
+
+
+状态 46
+
+   42 Factor: number .
+
+    $default  reduce using rule 42 (Factor)
+
+
+状态 47
+
+   41 Factor: ident .
+
+    $default  reduce using rule 41 (Factor)
+
+
+状态 48
+
+   43 Factor: lparen . Exp rparen
+
+    plus   shift, and go to state 13
+    minus  shift, and go to state 14
+
+    $default  reduce using rule 30 (front)
+
+    Exp    转到状态56
+    front  转到状态57
+
+
+状态 49
+
+   19 Stmt: returnsym . semicolon Stmt
+
+    semicolon  shift, and go to state 58
+
+
+状态 50
+
+   17 Stmt: ifsym . lparen cond rparen lbrace Stmt rbrace Stmt
+
+    lparen  shift, and go to state 59
+
+
+状态 51
+
+   18 Stmt: whilesym . lparen cond rparen lbrace Stmt rbrace Stmt
+
+    lparen  shift, and go to state 60
+
+
+状态 52
+
+    2 Program: CDecl IntDecl VDecl mainsym lparen rparen lbrace IntDecl Stmt . rbrace
+
+    rbrace  shift, and go to state 61
+
+
+状态 53
+
+   16 Stmt: Factor . IDT semicolon Stmt
+
+    lparen   shift, and go to state 62
+    becomes  shift, and go to state 63
+
+    IDT  转到状态64
+
+
+状态 54
+
+    6 CIDC: comma ident becomes front number . CIDC
+
+    comma  shift, and go to state 26
+
+    $default  reduce using rule 5 (CIDC)
+
+    CIDC  转到状态65
+
+
+状态 55
+
+   14 VDecl: voidsym ident lparen rparen lbrace CDecl IntDecl Stmt . rbrace VDecl
+
+    rbrace  shift, and go to state 66
+
+
+状态 56
+
+   43 Factor: lparen Exp . rparen
+
+    rparen  shift, and go to state 67
+
+
+状态 57
+
+   29 Exp: front . Term TM
+
+    number  shift, and go to state 46
+    ident   shift, and go to state 47
+    lparen  shift, and go to state 48
+
+    Term    转到状态68
+    Factor  转到状态69
+
+
+状态 58
+
+   19 Stmt: returnsym semicolon . Stmt
+
+    number     shift, and go to state 46
+    ident      shift, and go to state 47
+    lparen     shift, and go to state 48
+    returnsym  shift, and go to state 49
+    ifsym      shift, and go to state 50
+    whilesym   shift, and go to state 51
+
+    $default  reduce using rule 15 (Stmt)
+
+    Stmt    转到状态70
+    Factor  转到状态53
+
+
+状态 59
+
+   17 Stmt: ifsym lparen . cond rparen lbrace Stmt rbrace Stmt
+
+    plus   shift, and go to state 13
+    minus  shift, and go to state 14
+
+    $default  reduce using rule 30 (front)
+
+    cond   转到状态71
+    Exp    转到状态72
+    front  转到状态57
+
+
+状态 60
+
+   18 Stmt: whilesym lparen . cond rparen lbrace Stmt rbrace Stmt
+
+    plus   shift, and go to state 13
+    minus  shift, and go to state 14
+
+    $default  reduce using rule 30 (front)
+
+    cond   转到状态73
+    Exp    转到状态72
+    front  转到状态57
+
+
+状态 61
+
+    2 Program: CDecl IntDecl VDecl mainsym lparen rparen lbrace IntDecl Stmt rbrace .
+
+    $default  reduce using rule 2 (Program)
+
+
+状态 62
+
+   21 IDT: lparen . rparen
+
+    rparen  shift, and go to state 74
+
+
+状态 63
+
+   20 IDT: becomes . Exp
+
+    plus   shift, and go to state 13
+    minus  shift, and go to state 14
+
+    $default  reduce using rule 30 (front)
+
+    Exp    转到状态75
+    front  转到状态57
+
+
+状态 64
+
+   16 Stmt: Factor IDT . semicolon Stmt
+
+    semicolon  shift, and go to state 76
+
+
+状态 65
+
+    6 CIDC: comma ident becomes front number CIDC .
+
+    $default  reduce using rule 6 (CIDC)
+
+
+状态 66
+
+   14 VDecl: voidsym ident lparen rparen lbrace CDecl IntDecl Stmt rbrace . VDecl
+
+    voidsym  shift, and go to state 11
+
+    $default  reduce using rule 13 (VDecl)
+
+    VDecl  转到状态77
+
+
+状态 67
+
+   43 Factor: lparen Exp rparen .
+
+    $default  reduce using rule 43 (Factor)
+
+
+状态 68
+
+   29 Exp: front Term . TM
+
+    plus   shift, and go to state 78
+    minus  shift, and go to state 79
+
+    $default  reduce using rule 33 (TM)
+
+    TM  转到状态80
+
+
+状态 69
+
+   36 Term: Factor . FT
+
+    times  shift, and go to state 81
+    divd   shift, and go to state 82
+    mod    shift, and go to state 83
+
+    $default  reduce using rule 37 (FT)
+
+    FT  转到状态84
+
+
+状态 70
+
+   19 Stmt: returnsym semicolon Stmt .
+
+    $default  reduce using rule 19 (Stmt)
+
+
+状态 71
+
+   17 Stmt: ifsym lparen cond . rparen lbrace Stmt rbrace Stmt
+
+    rparen  shift, and go to state 85
+
+
+状态 72
+
+   22 cond: Exp . RelOp Exp
+
+    leq  shift, and go to state 86
+    neq  shift, and go to state 87
+    geq  shift, and go to state 88
+    lss  shift, and go to state 89
+    gtr  shift, and go to state 90
+    eql  shift, and go to state 91
+
+    RelOp  转到状态92
+
+
+状态 73
+
+   18 Stmt: whilesym lparen cond . rparen lbrace Stmt rbrace Stmt
+
+    rparen  shift, and go to state 93
+
+
+状态 74
+
+   21 IDT: lparen rparen .
+
+    $default  reduce using rule 21 (IDT)
+
+
+状态 75
+
+   20 IDT: becomes Exp .
+
+    $default  reduce using rule 20 (IDT)
+
+
+状态 76
+
+   16 Stmt: Factor IDT semicolon . Stmt
+
+    number     shift, and go to state 46
+    ident      shift, and go to state 47
+    lparen     shift, and go to state 48
+    returnsym  shift, and go to state 49
+    ifsym      shift, and go to state 50
+    whilesym   shift, and go to state 51
+
+    $default  reduce using rule 15 (Stmt)
+
+    Stmt    转到状态94
+    Factor  转到状态53
+
+
+状态 77
+
+   14 VDecl: voidsym ident lparen rparen lbrace CDecl IntDecl Stmt rbrace VDecl .
+
+    $default  reduce using rule 14 (VDecl)
+
+
+状态 78
+
+   34 TM: plus . Term TM
+
+    number  shift, and go to state 46
+    ident   shift, and go to state 47
+    lparen  shift, and go to state 48
+
+    Term    转到状态95
+    Factor  转到状态69
+
+
+状态 79
+
+   35 TM: minus . Term TM
+
+    number  shift, and go to state 46
+    ident   shift, and go to state 47
+    lparen  shift, and go to state 48
+
+    Term    转到状态96
+    Factor  转到状态69
+
+
+状态 80
+
+   29 Exp: front Term TM .
+
+    $default  reduce using rule 29 (Exp)
+
+
+状态 81
+
+   38 FT: times . Factor FT
+
+    number  shift, and go to state 46
+    ident   shift, and go to state 47
+    lparen  shift, and go to state 48
+
+    Factor  转到状态97
+
+
+状态 82
+
+   39 FT: divd . Factor FT
+
+    number  shift, and go to state 46
+    ident   shift, and go to state 47
+    lparen  shift, and go to state 48
+
+    Factor  转到状态98
+
+
+状态 83
+
+   40 FT: mod . Factor FT
+
+    number  shift, and go to state 46
+    ident   shift, and go to state 47
+    lparen  shift, and go to state 48
+
+    Factor  转到状态99
+
+
+状态 84
+
+   36 Term: Factor FT .
+
+    $default  reduce using rule 36 (Term)
+
+
+状态 85
+
+   17 Stmt: ifsym lparen cond rparen . lbrace Stmt rbrace Stmt
+
+    lbrace  shift, and go to state 100
+
+
+状态 86
+
+   24 RelOp: leq .
+
+    $default  reduce using rule 24 (RelOp)
+
+
+状态 87
+
+   28 RelOp: neq .
+
+    $default  reduce using rule 28 (RelOp)
+
+
+状态 88
+
+   25 RelOp: geq .
+
+    $default  reduce using rule 25 (RelOp)
+
+
+状态 89
+
+   26 RelOp: lss .
+
+    $default  reduce using rule 26 (RelOp)
+
+
+状态 90
+
+   27 RelOp: gtr .
+
+    $default  reduce using rule 27 (RelOp)
+
+
+状态 91
+
+   23 RelOp: eql .
+
+    $default  reduce using rule 23 (RelOp)
+
+
+状态 92
+
+   22 cond: Exp RelOp . Exp
+
+    plus   shift, and go to state 13
+    minus  shift, and go to state 14
+
+    $default  reduce using rule 30 (front)
+
+    Exp    转到状态101
+    front  转到状态57
+
+
+状态 93
+
+   18 Stmt: whilesym lparen cond rparen . lbrace Stmt rbrace Stmt
+
+    lbrace  shift, and go to state 102
+
+
+状态 94
+
+   16 Stmt: Factor IDT semicolon Stmt .
+
+    $default  reduce using rule 16 (Stmt)
+
+
+状态 95
+
+   34 TM: plus Term . TM
+
+    plus   shift, and go to state 78
+    minus  shift, and go to state 79
+
+    $default  reduce using rule 33 (TM)
+
+    TM  转到状态103
+
+
+状态 96
+
+   35 TM: minus Term . TM
+
+    plus   shift, and go to state 78
+    minus  shift, and go to state 79
+
+    $default  reduce using rule 33 (TM)
+
+    TM  转到状态104
+
+
+状态 97
+
+   38 FT: times Factor . FT
+
+    times  shift, and go to state 81
+    divd   shift, and go to state 82
+    mod    shift, and go to state 83
+
+    $default  reduce using rule 37 (FT)
+
+    FT  转到状态105
+
+
+状态 98
+
+   39 FT: divd Factor . FT
+
+    times  shift, and go to state 81
+    divd   shift, and go to state 82
+    mod    shift, and go to state 83
+
+    $default  reduce using rule 37 (FT)
+
+    FT  转到状态106
+
+
+状态 99
+
+   40 FT: mod Factor . FT
+
+    times  shift, and go to state 81
+    divd   shift, and go to state 82
+    mod    shift, and go to state 83
+
+    $default  reduce using rule 37 (FT)
+
+    FT  转到状态107
+
+
+状态 100
+
+   17 Stmt: ifsym lparen cond rparen lbrace . Stmt rbrace Stmt
+
+    number     shift, and go to state 46
+    ident      shift, and go to state 47
+    lparen     shift, and go to state 48
+    returnsym  shift, and go to state 49
+    ifsym      shift, and go to state 50
+    whilesym   shift, and go to state 51
+
+    $default  reduce using rule 15 (Stmt)
+
+    Stmt    转到状态108
+    Factor  转到状态53
+
+
+状态 101
+
+   22 cond: Exp RelOp Exp .
+
+    $default  reduce using rule 22 (cond)
+
+
+状态 102
+
+   18 Stmt: whilesym lparen cond rparen lbrace . Stmt rbrace Stmt
+
+    number     shift, and go to state 46
+    ident      shift, and go to state 47
+    lparen     shift, and go to state 48
+    returnsym  shift, and go to state 49
+    ifsym      shift, and go to state 50
+    whilesym   shift, and go to state 51
+
+    $default  reduce using rule 15 (Stmt)
+
+    Stmt    转到状态109
+    Factor  转到状态53
+
+
+状态 103
+
+   34 TM: plus Term TM .
+
+    $default  reduce using rule 34 (TM)
+
+
+状态 104
+
+   35 TM: minus Term TM .
+
+    $default  reduce using rule 35 (TM)
+
+
+状态 105
+
+   38 FT: times Factor FT .
+
+    $default  reduce using rule 38 (FT)
+
+
+状态 106
+
+   39 FT: divd Factor FT .
+
+    $default  reduce using rule 39 (FT)
+
+
+状态 107
+
+   40 FT: mod Factor FT .
+
+    $default  reduce using rule 40 (FT)
+
+
+状态 108
+
+   17 Stmt: ifsym lparen cond rparen lbrace Stmt . rbrace Stmt
+
+    rbrace  shift, and go to state 110
+
+
+状态 109
+
+   18 Stmt: whilesym lparen cond rparen lbrace Stmt . rbrace Stmt
+
+    rbrace  shift, and go to state 111
+
+
+状态 110
+
+   17 Stmt: ifsym lparen cond rparen lbrace Stmt rbrace . Stmt
+
+    number     shift, and go to state 46
+    ident      shift, and go to state 47
+    lparen     shift, and go to state 48
+    returnsym  shift, and go to state 49
+    ifsym      shift, and go to state 50
+    whilesym   shift, and go to state 51
+
+    $default  reduce using rule 15 (Stmt)
+
+    Stmt    转到状态112
+    Factor  转到状态53
+
+
+状态 111
+
+   18 Stmt: whilesym lparen cond rparen lbrace Stmt rbrace . Stmt
+
+    number     shift, and go to state 46
+    ident      shift, and go to state 47
+    lparen     shift, and go to state 48
+    returnsym  shift, and go to state 49
+    ifsym      shift, and go to state 50
+    whilesym   shift, and go to state 51
+
+    $default  reduce using rule 15 (Stmt)
+
+    Stmt    转到状态113
+    Factor  转到状态53
+
+
+状态 112
+
+   17 Stmt: ifsym lparen cond rparen lbrace Stmt rbrace Stmt .
+
+    $default  reduce using rule 17 (Stmt)
+
+
+状态 113
+
+   18 Stmt: whilesym lparen cond rparen lbrace Stmt rbrace Stmt .
+
+    $default  reduce using rule 18 (Stmt)

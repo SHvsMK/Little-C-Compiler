@@ -1,0 +1,17 @@
+Program        -----> Block
+Block          -----> ConstDecl VarDecl ProcDecl Stmt
+ConstDecl      -----> const ident=number CD;|nul
+CD             -----> ,ident=number CD|nul
+VarDecl        -----> var ident ID;|nul
+ID             -----> ,ident ID|nul
+ProcDecl       -----> procedure ident;Block; ProcDecl|nul
+Stmt           -----> ident:=Exp|call ident|begin Stmt ST end|if Cond then Stmt|while Cond do Stmt|nul
+ST             -----> ;Stmt ST|nul
+Cond           -----> odd Exp|Exp RelOp Exp
+RelOp          -----> =|<>|<|>|<=|>=
+Exp            -----> front Term TM
+front          -----> +|-|nul
+TM             -----> +Term TM|-Term TM|nul
+Term           -----> Factor FT
+FT             -----> *Factor FT|/Factor FT|nul
+Factor         -----> ident|number|(Exp)

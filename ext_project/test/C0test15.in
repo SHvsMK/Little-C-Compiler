@@ -1,0 +1,13 @@
+funcint x(int i,int j)
+{
+	return i+j;
+}
+main()
+{
+	int i, j;
+	for(i = 1; i <= 5; i = i + 1)
+	{
+		j = x(i, i);
+	}
+	return;
+}

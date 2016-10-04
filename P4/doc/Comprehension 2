@@ -1,0 +1,1 @@
+关于expr.y和expr1.y它们都通过bison生成分析器，并且同时完成表达式的求值，而表达式的求值主要是通过Action来完成的。在每一步需要求值的语法中加入相应的Action，在对应的自动生成的分析器里我们在yyparse()函数中可以看到一组switch和case语句，这里面的工作就是Action的对应动作，在这里面完成了表达式的求值与运算。更为详细的内容可以参见Comprehension of Bision中的内容。

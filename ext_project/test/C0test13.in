@@ -1,0 +1,10 @@
+void e(int a)
+{
+	a = 1;
+	return;
+}
+main()
+{
+	e();
+	return;
+}

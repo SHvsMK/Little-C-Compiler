@@ -1,0 +1,50 @@
+array a[10];
+
+funcint partition(int p, int r)
+{
+	int x, i, j, t;
+	x = a[r];
+	i = p - 1;
+	for(j = p; j <= r - 1; j = j + 1)
+	{
+		if(a[j] <= x)
+		{
+			i = i + 1;
+			t = a[i];
+			a[i] = a[j];
+			a[j] = t;
+		}
+	}
+	t = a[i + 1];
+	a[i + 1] = a[r];
+	a[r] = t;
+	return i + 1;
+}
+
+void quicksort(int p, int r)
+{
+	int q;
+	if(p < r)
+	{
+		q = partition(p, r);
+		quicksort(p, q - 1);
+		quicksort(q + 1, r);
+	}
+	return;
+}
+
+main()
+{
+	int i, n;
+	n = getnum();
+	for(i = 1; i <= n; i = i + 1)
+	{
+		a[i] = getnum();
+	}
+	quicksort(1, n);
+	for(i = 1; i <= n; i = i + 1)
+	{
+		putnum(a[i]);
+	}
+	return;
+}

@@ -1,0 +1,11 @@
+funcint a()
+{
+	return 1;
+}
+
+main()
+{
+	int b;
+	b = a();
+	return;
+}

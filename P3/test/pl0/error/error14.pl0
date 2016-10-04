@@ -1,0 +1,3 @@
+begin
+	call 1;
+end.

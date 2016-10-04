@@ -1,0 +1,61 @@
+const ass=1,asfd=1;
+const m=7;
+const n=85;
+int a=1;
+int b=+1;
+int g=-1;
+int d,f,e;
+array wang[2][3][4];
+array yi[1][9];
+array cheng[9][3];
+array cc[1][1];
+void adfs()
+{
+}
+void b(int c, int a, int d, int e)
+{
+	return;
+}
+
+void asdfddds(int aa, int sadf)
+{
+	a=5;
+	return;
+}
+funcint f(int bd)
+{
+array hao[12][32];
+return 8;
+}
+void c()
+{
+int wang;
+return;
+}
+
+main()
+{
+wang[2+a][1*m][c()] = c(a+1,ass, 2,3,4,5);
+for(a=1;a<=4;a=a+1)
+{
+	a=2;
+}
+c();
+	if(a==1)
+	{
+		b=1;
+	}
+c();
+return;
+	while(a!=1)
+	{
+		a=2;
+	}
+	c();
+	f();
+	wang = f();
+	return;
+}
+/*在函数中return是可有可无的，因为都是空函数类型,变量值可为正负*/
+
+/*可以看到一些简单的语句的代码生成结果*/

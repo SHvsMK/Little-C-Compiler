@@ -1,0 +1,19 @@
+对生成抽象树的理解。我们用asgn2ast.y来进行分析与理解。首先在.y文件的第一部分定义了抽象树这样一个变量，并且定义了抽象树的节点，我们可以在union中看到，并且在type的定义中我们了解到，节点所用来保存的东西是什么样的形式的。然后我们看看.y文件时如何操作的，首先在语法部分的goal部分的input中添加Action指出了AST的root，然后后面的操作就是遇到相应的情况对抽象树的每个节点做相应的操作，比如何时该给节点赋值，何时添加一个节点，何时给节点赋予什么样的属性等等一些列的操作，根据不同的对象来进行的。下面我们看看定义AST的文件common.h和ast.c。这个两文件说明了AST的结构以及它的功能实现。先说common.h，这个文件中定义了AST这样一个类型的形式，并且声明了AST的各个功能：
+ASTNode newNumber(float value);
+ASTNode newName(Table ptab, char *name);
+ASTNode newPrefixExp(int op, ASTNode exp);
+ASTNode newParenExp(ASTNode exp);
+ASTNode newInfixExp(int op, ASTNode left, ASTNode right);
+ASTNode newAssignment(int op, ASTNode left, ASTNode right);
+void	destroyExp(Exp *pexp);
+ASTNode newExpStmt(ASTNode exp);
+void	destroyExpStmt(ExpStmt *pexpstmt);
+ASTNode newBlock();
+void	destroyBlock(Block *pblock);
+ASTTree newAST();
+void	destroyAST(ASTNode *pnode);
+void 	dumpAST(ASTNode node);
+Loc	setLoc(ASTNode node, Loc loc);
+然后在ast.c中，则对上述的每一种功能进行了实现以及处理。
+上面的AST的操作大体和上课讲的抽象树的操作一致，然后具体的实现就是看个人对AST的理解了。
+AST大致就是这样一个形式。

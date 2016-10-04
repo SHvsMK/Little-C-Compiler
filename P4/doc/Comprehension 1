@@ -1,0 +1,19 @@
+expr:   $(CONF)/expr.y $(CONF)/expr.lex
+	$(YACC) -b expr -o $(SRC)/expr.tab.c $(CONF)/expr.y
+	$(LEX) -o$(SRC)/expr.lex.c $(CONF)/expr.lex
+	$(CC) -o $(BIN)/expr $(SRC)/expr.lex.c $(SRC)/expr.tab.c -ll -lm
+
+第一行make expr所需要依赖两个文件，一个是.y，一个是.lex。
+第二行模仿Yacc，由.y文件生成.tab.h和.tab.c文件，以expr位前缀名。
+	-y模仿yacc
+	-d生成头文件.h
+	-b文件前缀名
+	-o输出文件
+第三行由flex通过.lex文件生成.lex.c文件。
+	-i忽略一些情况
+	-I产生交互的扫描器
+	-o输出文件
+第四行由gcc通过.lex.c和.tab.c生成expr可执行文件。
+	-o输出文件
+	-ll，-lm引用库
+	-Iinclude引用头文件

@@ -1,0 +1,17 @@
+这个文档包含了7个文件。
+
+bin：可执行文件所在位置
+config：C0.lex C0.y C01.lex C01.y C02.lex C02.y
+include : common.h common1.h common2.h util.h
+doc：这里面包含了9个文件，包含了对AST和symbol的新的理解，实验记录及说明，一个说明指示(这个很重要，建议先读)。
+src：使用bison所生成的一些文件以及ast.c ast1.c ast2.c symtab1.c symtab2.c
+test：C0的测试文件。
+makefile：makefile
+run.sh:自动运行脚本
+README：本文件
+
+编译完成之后使用方法：在当前目录下/bin/C0 <test/C0test1.in
+
+Made By SHvsMK
+PB11011030
+王一橙

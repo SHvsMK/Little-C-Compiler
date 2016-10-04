@@ -1,0 +1,20 @@
+const a=1;
+
+int b=2;
+
+void c()
+{
+	return;
+}
+
+void d()
+{
+	return;
+}
+
+main()
+{
+	return;
+}
+
+/*定义顺序是先常量在变成在函数*/

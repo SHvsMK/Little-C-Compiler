@@ -1,0 +1,30 @@
+int a=1;
+int b=+1;
+int c=-1;
+int d,f,e;
+void d()
+{
+	a=5;
+}
+void c()
+{
+return;
+}
+main()
+{
+	if(a==1)
+	{
+		b=1;
+	}
+	else
+	{
+		return;
+	}
+	while(a!=1)
+	{
+		a=2;
+	}
+	c();
+	return;
+}
+/*在函数中return是可有可无的，因为都是空函数类型,变量值可为正负*/

@@ -1,0 +1,9 @@
+关于对符号表的理解。我们主要用asgn.y来进行分析，首先在.y文件的第一部分定义了符号表symtab。我们先看.y文件中是如何使用符号表的。符号表是通过Action来使用的，当遇到赋值语句我们将这个标识符和它所被赋的值添加进入符号表，而当要引用标识符的时候，我们就将获取标识符的值，然后用它进行下面可能的处理。我们大致看看asgn_err.y和asgn2ast.y这两个文件中对符号表的应用也就是遇到新的项目或者重新赋值的时候更新符号表，而在需要用到符号表中的内容的时候，再将内容提取出来。接下来我们看看定义符号表的文件symtab.c和common.h。首先在common.h这个文件中，主要定义了符号表这样的一个类型，然后声明了符号表的一些功能：
+Table 	newTable();//新建符号表
+Symbol 	lookup(Table ptab, const char *name);//向上看
+Symbol 	getSym(Table ptab, const char *name);//取符号
+float 	getVal(Table ptab, const char *name);//取值
+Symbol 	setVal(Table ptab, const char *name, float val);//添加新的符号
+void 	destroyTable();//摧毁符号表
+然后在symtab.c这个文件中对上述的每一个函数或功能进行了具体的实现。
+符号表大致就是这样一个形式。

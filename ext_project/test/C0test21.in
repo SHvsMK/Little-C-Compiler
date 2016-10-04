@@ -1,0 +1,11 @@
+int x;
+main()
+{
+	int i;
+	x = getnum();
+	for(i = 1; i <= x; i = i + 1)
+	{
+		putnum(i);
+	}
+	return;
+}

@@ -1,0 +1,15 @@
+Program        ----->   Block
+Block          ----->   {ConstDecl}{IntDecl}{VoidDecl}main()'{'{IntDecl}{Stmt}Return;'}'
+ConstDecl      ----->   const ConstDef{,ConstDef};
+IntDecl        ----->   int IntDef{,IntDef};
+ConstIntDef    ----->   ident=number
+VoidDecl       ----->   void ident()'{'{IntDecl}{Stmt}Return;'}'
+Stmt           ----->   ident=Exp;|ident();|if(Cond)'{'Stmt'}'else'{'Stmt'}'|while(Cond)'{'Stmt'}'|nul
+Cond           ----->   Exp RelOp Exp
+RelOp          ----->   ==|<=|>=|<|>|!=
+Exp            ----->   [+|-]Term{+Term|-Term}
+Term           ----->   Factor{*Factor|/Factor|%Factor}
+Factor         ----->   ident|number|(Exp)
+
+
+一些说明：我在设计C0语法的时候，是规定了必须有一个main函数，上诉的文法中出现'{','}'表示的是大括号，为了与本来的{,}相区别。我在设计if语句的时候，是强行要求if后面必须跟着else语句的，即使else后面没有任何语句，也需要以一对匹配的大括号结束整个if语句。我在设计变量和常量的定义时，是强行要求赋值的。而且在main函数和其他空函数中，必须要以return;结束。大致说明就是这些。至于最终的设计是否是这样，我还在斟酌之中，因为可能会添加进入一些新的语法规范，逐步完善整个C0编译器，或者说将其功能扩展。

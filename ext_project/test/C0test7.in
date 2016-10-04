@@ -1,0 +1,19 @@
+int x;
+void b()
+{
+	a();
+}
+void a()
+{
+	if(x < 10)
+	{x=x+1;b();}
+	return;
+}
+main()
+{
+	x = 1;
+	a();
+	return;
+}
+
+/*函数相互调用的代码生成结果*/

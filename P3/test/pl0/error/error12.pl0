@@ -1,0 +1,10 @@
+const a=1;
+
+procedure b;
+begin
+end;
+
+begin
+	a:=1;
+	b:=2;
+end.

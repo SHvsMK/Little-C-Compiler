@@ -1,0 +1,17 @@
+const m=7;
+const n=85;
+int x, y, z, q, r;
+void a()
+{
+	int f, x;
+	x=3;
+	if(x==3)
+	{f=x+1+n+m*2;}
+}
+main()
+{
+	x=12;
+	a();
+}
+
+/*一个比较复杂的计算表达式的代码生成结果*/

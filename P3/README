@@ -1,0 +1,29 @@
+This directory includes three files:
+doc
+---1:it contains some documents for the first part of the entire experiment:
+Error Analyse File
+error and its corresponding position
+pl0设计文档中语法与实现的语法的差别
+Some thoughts for the design of pl0
+
+---2:it contains some documents for the second part of the entire experiment:
+Design for C0
+LL for C0
+LL for pl0
+
+---3:it contains some documents for the third part of the entire experiment:
+Comprehension for the generating of mid-code of pl0
+Comprehension for the tablet of pl0
+
+test
+
+---C0:
+it contains 9 .c files those are the corresponding C file of pl0 files which include some pl0 features and explainations of them
+
+---pl0:
+it contains 9 .pl0 files those contents are about pl0 features and their explainations and one a error file.
+
+      ---error:
+it contains all kinds of errors written by pl0, which we can detect through compiling the pl0 programs which are not right in grammer.
+
+README: an introduction about the directory.

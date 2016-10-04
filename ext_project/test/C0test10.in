@@ -1,0 +1,40 @@
+const a=1;
+int b, c=1;
+array d[10][10];
+
+funcint y()
+{
+	return 8+2+1+d[4][5];
+}
+/*
+void e(int f)
+{
+	int w, x;
+	w = y();
+	d[4][5] = 5;
+	x = d[4][5];
+	return;
+}
+*/
+funcint z(int i)
+{
+	if(i == 1)
+	{return y();}
+	return i;
+}
+
+main()
+{
+	int i, wang;
+	d[4][5] = 1;
+	for(i = 1; i <= 5; i = i + 1)
+	{
+		wang = z(i);
+		while(i != 5)
+		{
+			i = i + 1;
+		}
+		wang = z(i);
+	}
+	return;
+}

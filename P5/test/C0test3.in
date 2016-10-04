@@ -1,0 +1,32 @@
+int a=1;
+
+void c()
+{
+	if(a == 1)
+	{
+		a=2;
+	}
+	else{}
+	while(a!=2)
+	{
+		a=2;
+		if(a == 2)
+		{
+			return;
+		}
+		else{return;}
+	}
+}
+main()
+{
+	if(a>1)
+	{
+		b=1;
+	}
+	else
+	{
+		return;
+	}
+	return;
+}
+/*在函数中return是可有可无的，因为都是空函数类型,变量值可为正负*/

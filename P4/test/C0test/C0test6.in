@@ -1,0 +1,16 @@
+int a=1;
+int b=-1;
+int c=+1;
+
+void d()
+{
+}
+void c()
+{
+return;
+}
+main()
+{
+	return;
+}
+/*在函数中return是可有可无的，因为都是空函数类型,变量值可为正负*/

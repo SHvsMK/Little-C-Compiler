@@ -1,0 +1,19 @@
+array a[2][2][2];
+
+funcint x(int i, int j)
+{
+	if(i > j)
+	{return 1;}
+	return 2;
+}
+
+main()
+{
+	int b, c;
+	b = 1;
+	c = 1;
+	a[1][1][1] = 2;
+	a[x(2,1)][b + c][a[1][1][1]] = 999;
+	putnum(a[2][2][2]);
+	putnum(a[1][2][2]);
+}

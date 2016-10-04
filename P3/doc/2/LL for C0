@@ -1,0 +1,17 @@
+Program      -----> Block
+Block        -----> ConstDecl IntDecl VoidDecl main(){ IntDecl Stmt Return; }
+ConstDef     -----> const ident=number CID; ConstDecl|nul
+IntDecl      -----> int ident=number CID; IntDecl|nul
+CID          -----> ,ident=number CID|nul
+VoidDecl     -----> void ident(){ ConstDecl IntDecl Stmt Return; }
+Stmt         -----> ident=Exp; ST|ident(); ST|if(cond){Stmt}else{STP} ST|while(Cond){Stmt} ST|nul
+ST           -----> Stmt ST|nul
+STP          -----> Stmt ST|;
+Cond         -----> Exp RelOp Exp
+RelOp        -----> ==|<=|>=|<|>|!=
+Exp          -----> front Term TM
+front        -----> +|-|nul
+TM           -----> +Term TM|-Term TM|nul
+Term         -----> Factor FT
+FT           -----> *Factor FT|/Factor FT|%Factor|nul
+Factor       -----> ident|number|(Exp)

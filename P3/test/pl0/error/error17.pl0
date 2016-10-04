@@ -1,0 +1,6 @@
+var a;
+
+begin
+	begin
+		a:=1.
+end.

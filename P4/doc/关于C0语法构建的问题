@@ -1,0 +1,30 @@
+我在用我之前的写的C0文法进行写C0.y的时，一开始出现了各种移进归约冲突和各种归约归约冲突。然后我使用bison -v来查看所生成的一个状态表，去查询生成的文法中的冲突问题，此时我发现我下面的这种文法设计是问题所在，出现了各种冲突。
+Stmt	:
+	| ident IDT
+	| ifsym lparen cond rparen lbrace Stmt rbrace elsesym lbrace STP rbrace ST
+	| whilesym lparen cond rparen dosym lbrace Stmt rbrace ST
+	;
+
+IDT	: becomes Exp semicolon ST
+	| lparen rparen semicolon ST
+	;
+
+ST	:
+	| Stmt ST
+	;
+
+STP	: Stmt ST
+	| semicolon
+	;
+我的这一段文法有问题。
+然后我就将其改为了：
+Stmt	:
+	| ident IDT semicolon Stmt
+	| ifsym lparen cond rparen lbrace Stmt rbrace elsesym lbrace Stmt rbrace Stmt
+	| whilesym lparen cond rparen dosym lbrace Stmt rbrace Stmt
+	;
+
+IDT	: becomes Exp
+	| lparen rparen
+	;
+虽然我解决了冲突问题，但是我个人并没有特别的理解，冲突发生的原因在哪里，所以特别将此问题记录下来，以便自己慢慢解决。
